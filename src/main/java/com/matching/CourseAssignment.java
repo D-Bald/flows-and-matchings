@@ -5,28 +5,28 @@ import com.matching.graph.Vertex;
 
 public class CourseAssignment {
     public static void main(String[] args) {
-        String v1 = "David";
-        String v2 = "Alice";
-        String v3 = "Bob";
-        String v4 = "Sport 1";
-        String v5 = "Sport 2";
-        String v6 = "Kunst 1";
+        String david = "David";
+        String alice = "Alice";
+        String bob = "Bob";
+        String sport1 = "Sport 1";
+        String sport2 = "Sport 2";
+        String kunst = "kunst";       ;
 
         Graph g = new Graph();
 
-        g.addVertex(v1);
-        g.addVertex(v2);
-        g.addVertex(v3);
-        g.addVertex(v4);
-        g.addVertex(v5);
-        g.addVertex(v6);
+        g.addVertex(david);
+        g.addVertex(alice);
+        g.addVertex(bob);
+        g.addVertex(sport1);
+        g.addVertex(sport2);
+        g.addVertex(kunst);
 
-        g.addEdge(v1, v4, 1);
-        g.addEdge(v1, v5, 0);
-        g.addEdge(v2, v4, 1);
-        g.addEdge(v2, v5, 1);
-        g.addEdge(v2, v6, 1);
-        g.addEdge(v3, v6, 1);
+        g.addEdge(david, sport1, 1);
+        g.addEdge(david, sport2, 0);
+        g.addEdge(alice, sport1, 1);
+        g.addEdge(alice, sport2, 1);
+        g.addEdge(alice, kunst, 1);
+        g.addEdge(bob, kunst, 1);
 
         // Connect vertices of the bipartite graph
         // with a source and a target.
@@ -34,12 +34,12 @@ public class CourseAssignment {
         String t = "target";
         Vertex vS = g.addVertex(s);
         Vertex vT = g.addVertex(t);
-        g.addEdge(s, v1, 1);
-        g.addEdge(s, v2, 1);
-        g.addEdge(s, v3, 1);
-        g.addEdge(v4, t, 1);
-        g.addEdge(v5, t, 1);
-        g.addEdge(v6, t, 1);
+        g.addEdge(s, david, 1);
+        g.addEdge(s, alice, 1);
+        g.addEdge(s, bob, 1);
+        g.addEdge(sport1, t, 1);
+        g.addEdge(sport2, t, 1);
+        g.addEdge(kunst, t, 1);
 
         MaxFlow maxFlowRunner = new MaxFlow(g, vS, vT);
         int maxFlow = maxFlowRunner.run();
