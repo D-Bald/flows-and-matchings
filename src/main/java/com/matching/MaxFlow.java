@@ -11,14 +11,14 @@ import com.matching.graph.Graph;
 import com.matching.graph.Vertex;
 
 public class MaxFlow {
-    private Graph rG;
+    private Graph residualGraph;
     private Vertex s; // The source
     private Vertex t; // The target
 
     public MaxFlow(Graph graph, Vertex s, Vertex t) {
         if (graph.contains(s) && graph.contains(t)) {
-            this.rG = graph;
-            initResidualGraph(rG);
+            this.residualGraph = graph;
+            initResidualGraph(residualGraph);
             this.s = s;
             this.t = t;
         }
@@ -52,27 +52,27 @@ public class MaxFlow {
             Vertex v = t;
             while (v != s) {
                 Vertex u = parent.get(v);
-                System.out.println("   " + u + " -- " + rG.getEdge(u,v).getWeight() + " --> " + v);
-                rG.addToEdgeWeight(u, v, -maxPathFlow);
-                rG.addToEdgeWeight(v, u, +maxPathFlow);
+                System.out.println("   " + u + " -- " + residualGraph.getEdge(u,v).getWeight() + " --> " + v);
+                residualGraph.addToEdgeWeight(u, v, -maxPathFlow);
+                residualGraph.addToEdgeWeight(v, u, +maxPathFlow);
                 v = u;
             }
             System.out.println("CURRENT FLOW: " + maxFlow);
             System.out.println("RESIDUAL GRAPH");
-            System.out.println(rG.toString());
+            System.out.println(residualGraph.toString());
         }
         return maxFlow;
     }
 
     private boolean bfs(Map<Vertex, Vertex> parent) {
-        Set<Vertex> visited = new LinkedHashSet<Vertex>();
-        Queue<Vertex> queue = new LinkedList<Vertex>();
+        Set<Vertex> visited = new LinkedHashSet<>();
+        Queue<Vertex> queue = new LinkedList<>();
         queue.add(s);
         visited.add(s);
         while (!queue.isEmpty()) {
             Vertex u = queue.poll();
-            for (Vertex v : rG.getAdjacentvertices(u)) {
-                if (!visited.contains(v) && rG.getEdge(u, v).getWeight() != 0 ) {
+            for (Vertex v : residualGraph.getAdjacentvertices(u)) {
+                if (!visited.contains(v) && residualGraph.getEdge(u, v).getWeight() != 0 ) {
                     parent.put(v, u);
                     if (v == t) {
                         return true;
@@ -91,7 +91,7 @@ public class MaxFlow {
         Vertex v = t;
         while (v != s) {
             Vertex u = parent.get(v);
-            pathFlow = Math.min(pathFlow, rG.getEdge(u, v).getWeight());
+            pathFlow = Math.min(pathFlow, residualGraph.getEdge(u, v).getWeight());
             v = u;
         }
         return pathFlow;
