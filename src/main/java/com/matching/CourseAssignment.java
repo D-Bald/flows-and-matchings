@@ -10,7 +10,7 @@ public class CourseAssignment {
         String bob = "Bob";
         String sport1 = "Sport 1";
         String sport2 = "Sport 2";
-        String kunst = "kunst";       ;
+        String kunst = "Kunst";
 
         Graph g = new Graph();
 
