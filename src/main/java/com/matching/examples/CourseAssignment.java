@@ -1,29 +1,33 @@
-package com.matching;
+package com.matching.examples;
 
+import com.matching.MaxFlow;
 import com.matching.graph.Graph;
 import com.matching.graph.Vertex;
 
-public class JobAssignment {
-
+public class CourseAssignment {
     public static void main(String[] args) {
         String david = "David";
         String alice = "Alice";
         String bob = "Bob";
-        String juniorDev = "Junior Dev";
-        String scrumMaster = "Scrum Master";
+        String sport1 = "Sport 1";
+        String sport2 = "Sport 2";
+        String kunst = "Kunst";
 
         Graph g = new Graph();
 
         g.addVertex(david);
         g.addVertex(alice);
         g.addVertex(bob);
-        g.addVertex(juniorDev);
-        g.addVertex(scrumMaster);
+        g.addVertex(sport1);
+        g.addVertex(sport2);
+        g.addVertex(kunst);
 
-        g.addEdge(david, juniorDev, 1);
-        g.addEdge(alice, juniorDev, 1);
-        g.addEdge(alice, scrumMaster, 1);
-        g.addEdge(bob, scrumMaster, 1);
+        g.addEdge(david, sport1, 1);
+        g.addEdge(david, sport2, 0);
+        g.addEdge(alice, sport1, 1);
+        g.addEdge(alice, sport2, 1);
+        g.addEdge(alice, kunst, 1);
+        g.addEdge(bob, kunst, 1);
 
         // Connect vertices of the bipartite graph with a source and a target.
         String s = "source";
@@ -33,8 +37,9 @@ public class JobAssignment {
         g.addEdge(s, david, 1);
         g.addEdge(s, alice, 1);
         g.addEdge(s, bob, 1);
-        g.addEdge(juniorDev, t, 1);
-        g.addEdge(scrumMaster, t, 1);
+        g.addEdge(sport1, t, 1);
+        g.addEdge(sport2, t, 1);
+        g.addEdge(kunst, t, 1);
 
         MaxFlow maxFlowRunner = new MaxFlow(g, vS, vT);
         int maxFlow = maxFlowRunner.run();
