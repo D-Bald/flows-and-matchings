@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Graph {
     
-    private Set<Vertex> vertices = new HashSet<Vertex>();
+    private final Set<Vertex> vertices = new HashSet<>();
     
     public Map<Vertex, Map<Vertex, Edge>> getEdges()
     {

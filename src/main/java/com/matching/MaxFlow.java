@@ -39,7 +39,7 @@ public class MaxFlow {
 
     public int run() {
         int maxFlow = 0;
-        Map<Vertex, Vertex> parent = new HashMap<Vertex, Vertex>();
+        Map<Vertex, Vertex> parent = new HashMap<>();
 
         while (bfs(parent)){
             int maxPathFlow = maxPathFlow(parent);

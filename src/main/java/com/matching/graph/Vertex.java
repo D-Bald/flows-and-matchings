@@ -8,33 +8,27 @@ import java.util.Map;
 public class Vertex {
 
     private String label;
-    private Map<Vertex, Edge> edges = new LinkedHashMap<>();
-
+    private final Map<Vertex, Edge> edges = new LinkedHashMap<>();
     protected Vertex(String label)
     {
         this.label = label;
     }
-
     protected String getLabel()
     {
         return label;
     }
-
     protected void setLabel(String label)
     {
         this.label = label;
     }
-
     protected Map<Vertex, Edge> getEdges()
     {
         return edges;
     }
-
     protected Edge getEdgeTo(Vertex v)
     {
         return edges.get(v);
     }
-
     protected void addEdge(Vertex vertex, Edge edge)
     {
         this.edges.putIfAbsent(vertex, edge);
