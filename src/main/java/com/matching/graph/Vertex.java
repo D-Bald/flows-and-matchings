@@ -2,13 +2,13 @@
 
 package com.matching.graph;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Vertex {
 
     private String label;
-    private Map<Vertex, Edge> edges = new HashMap<>();
+    private Map<Vertex, Edge> edges = new LinkedHashMap<>();
 
     protected Vertex(String label)
     {
