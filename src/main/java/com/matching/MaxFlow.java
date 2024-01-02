@@ -45,7 +45,9 @@ public class MaxFlow {
             int maxPathFlow = maxPathFlow(parent);
             maxFlow += maxPathFlow;
 
-            // Update edge capacities with +maxPathFlow in direction of the Flow and -maxPathFlow in reversed direction
+            // Update edge capacities with -maxPathFlow in direction of the Flow and +maxPathFlow in reversed direction
+            // That means that the actual flow is increased in direction
+            // and can be decreased along the reversed direction of the Flow
             System.out.println("AUGMENTING PATH");
             Vertex v = t;
             while (v != s) {
