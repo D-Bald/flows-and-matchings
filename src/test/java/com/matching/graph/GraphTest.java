@@ -11,19 +11,6 @@ public class GraphTest {
     private String v1 = "David";
     private String v4 = "Junior Dev";
 
-    
-    @Test
-    public void testAddEdgeStringParam() {
-        Graph g = new Graph();
-        Vertex vertex1 = g.addVertex(v1);
-        Vertex vertex4 = g.addVertex(v4);
-
-        g.addEdge(v1, v4, 1);
-        Edge expectedEdge = new Edge(1);
-
-        assertEquals(expectedEdge, g.getEdge(vertex1, vertex4));
-    }
-
     @Test
     public void testAddEdgeVertexParam() {
         Graph g = new Graph();
@@ -89,7 +76,7 @@ public class GraphTest {
         Vertex vertex1 = g.addVertex(v1);
         Vertex vertex4 = g.addVertex(v4);
         assertFalse(g.containsEdge(vertex1, vertex4));
-        g.addEdge(v1, v4, 1);
+        g.addEdge(vertex1, vertex4, 1);
         assertTrue(g.containsEdge(vertex1, vertex4));
     }
 
@@ -100,7 +87,7 @@ public class GraphTest {
         Vertex vertex4 = g.addVertex(v4);
         Edge e = new Edge(1);
         assertFalse(g.containsEdge(vertex1, vertex4, e));
-        g.addEdge(v1, v4, 1);
+        g.addEdge(vertex1, vertex4, 1);
         assertTrue(g.containsEdge(g.getVertex(v1), g.getVertex(v4), e));
     }
 

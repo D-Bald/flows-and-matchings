@@ -63,17 +63,10 @@ public class Graph {
         return incomingEdges;
     }
 
-    public void addEdge(String from, String to, int weight)
+    public void addEdge(Vertex from, Vertex to, int weight)
     {
-        if (contains(from) && contains(to)) {
-            getVertex(from).addEdge(getVertex(to), new Edge(weight));
-        }
-    }
-
-    public void addEdge(Vertex u, Vertex v, int weight)
-    {
-        if (vertices.contains(u) && vertices.contains(v)) {
-            u.addEdge(v, new Edge(weight));
+        if (vertices.contains(from) && vertices.contains(to)) {
+            from.addEdge(to, new Edge(weight));
         }
     }
 
